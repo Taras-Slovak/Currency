@@ -17,6 +17,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MainComponent } from './components/main/main.component';
 import { FormComponent } from './components/form/form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { FormComponent } from './components/form/form.component';
     MatToolbarModule,
     MatInputModule,
     MatSelectModule,
+    FormsModule,
+    ReactiveFormsModule,
 
     NgxsModule.forRoot([CurrencyState], {
       developmentMode: !environment.production

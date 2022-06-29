@@ -1,4 +1,13 @@
+import { Currencies } from './../../models/currency.model';
+import { Observable } from 'rxjs';
+import { CurrencyState } from './../../store/currency.state';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Select } from '@ngxs/store';
+interface Food {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-form',
@@ -8,8 +17,25 @@ import { Component, OnInit } from '@angular/core';
 export class FormComponent implements OnInit {
 
   constructor() { }
+  @Select(CurrencyState.selectStateData)
+  currencies$: Observable<Currencies[]>;
+
+  currencies: Currencies[] = [];
+  filteredCurrency: Currencies[] = [];
 
   ngOnInit(): void {
-  }
+    this.currencies$.subscribe((res: Currencies[]) => {
 
+      this.currencies = res;
+      res.forEach(c => {
+        if (c.cc === 'USD') {
+          this.filteredCurrency.push(c)
+        }
+      })
+    })
+  }
+  currencyControl = new FormControl(this.filteredCurrency);
+  form = new FormGroup({
+    currency: this.currencyControl,
+  });
 }
