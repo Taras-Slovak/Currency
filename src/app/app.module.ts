@@ -13,12 +13,17 @@ import { HeaderComponent } from './components/header/header.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RequestService } from './services/request.service';
 import { CurrencyState } from './store/currency.state';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MainComponent } from './components/main/main.component';
+import { FormComponent } from './components/form/form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-
+    MainComponent,
+    FormComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,6 +31,9 @@ import { CurrencyState } from './store/currency.state';
     BrowserAnimationsModule,
     HttpClientModule,
     MatToolbarModule,
+    MatInputModule,
+    MatSelectModule,
+
     NgxsModule.forRoot([CurrencyState], {
       developmentMode: !environment.production
     })

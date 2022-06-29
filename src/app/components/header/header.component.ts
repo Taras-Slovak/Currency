@@ -6,7 +6,6 @@ import { Store } from '@ngxs/store';
 import { CurrencyState } from 'src/app/store/currency.state';
 import { Currencies } from 'src/app/models/currency.model';
 import { GetCurrencies } from 'src/app/store/currency.action';
-import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -18,7 +17,8 @@ export class HeaderComponent implements OnInit {
   @Select(CurrencyState.selectStateData)
   currencies$: Observable<Currencies[]>;
 
-  filtered: Currencies[] = []
+  currencies: Currencies[] = [];
+  filteredCurrency: Currencies[] = [];
 
   constructor(private store: Store) { }
 
@@ -26,7 +26,12 @@ export class HeaderComponent implements OnInit {
     this.store.dispatch(new GetCurrencies());
     this.currencies$.subscribe((res: Currencies[]) => {
 
-      console.log(res)
+      this.currencies = res;
+      res.forEach(c => {
+        if (c.cc === 'USD' || c.cc === 'EUR') {
+          this.filteredCurrency.push(c)
+        }
+      })
     })
   }
 }

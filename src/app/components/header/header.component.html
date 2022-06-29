@@ -1,8 +1,11 @@
 <mat-toolbar color="primary">
   <div class="inner">
     <span>Currency</span>
-    <!-- <div class="currencies" *ngFor="let currency of currencies$ | async">
+    <div class="currencies">
+      <div class="currency" *ngFor="let currency of filteredCurrency">
+        <p>{{currency.cc}} : {{currency.rate}}</p>
+      </div>
+    </div>
 
-    </div> -->
   </div>
 </mat-toolbar>

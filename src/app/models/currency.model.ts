@@ -7,5 +7,6 @@ export interface Currencies {
 }
 
 export interface Currency {
-  currency: string
+  name: string,
+  price: number | string
 }

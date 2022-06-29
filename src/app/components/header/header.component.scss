@@ -7,7 +7,14 @@
 }
 
 .currencies {
-  width: 140px;
+  width: 380px;
   display: flex;
   justify-content: space-between;
+  align-content: center;
+}
+
+.currency {
+  p {
+    margin: 0;
+  }
 }
